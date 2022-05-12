@@ -1,0 +1,8 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>Nuestros edificios y proyectos</h1>
+ <a class= "btn btn-success" href="{% url 'crearedificio' %}">Ingrese un nuevo Edificio o Proyecto </a>
+{% endblock %}
