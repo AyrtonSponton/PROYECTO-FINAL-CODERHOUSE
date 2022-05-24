@@ -1,6 +1,6 @@
 from inspect import formatannotationrelativeto
 from django.urls import path
-from .views import arquitecto, consultas, edificio, consultas, inicio, creararquitecto, crearedificio, crearconsulta,busqueda,buscar_arquitecto
+from .views import arquitecto, consultas, edificio, consultas, inicio, creararquitecto, crearedificio, crearconsulta,busqueda
 
 urlpatterns = [
     path('arquitecto/', arquitecto, name = "arquitecto"),
@@ -11,5 +11,4 @@ urlpatterns = [
     path('crearedificio/', crearedificio, name='crearedificio'),
     path('crearconsulta/', crearconsulta, name='crearconsulta'),
     path('busqueda/',busqueda, name='busqueda'),
-    path('buscar_arquitecto/',buscar_arquitecto, name='buscar_arquitecto')
   ]

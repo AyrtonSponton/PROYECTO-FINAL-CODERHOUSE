@@ -64,10 +64,8 @@ def crearedificio(request):
 def inicio(request):
     return render(request, "AppArquitectos/inicio.html")
 
-def busqueda(request):
-    return render(request, "AppArquitectos/busqueda_arquitecto.html")
 
-def buscar_arquitecto(request):
+def busqueda(request):
     if request.GET['matricula']:
         matricula= request.GET['matricula']
         arquitecto = arquitectos.objects.filter(matricula__icontains= matricula)
