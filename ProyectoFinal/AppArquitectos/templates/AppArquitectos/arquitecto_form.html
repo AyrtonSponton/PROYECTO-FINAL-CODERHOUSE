@@ -3,12 +3,10 @@
 
 {% block ContenidoCambiado %}
 
-<form action="{% url 'creararquitecto' %}" method="POST">{% csrf_token %} 
-
-    <table>
-        {{formulario.as_table}}
-    </table>
+<form method="post"> {% csrf_token %}
+    {{ fomr.as_p }}
     <input type="submit" value="ENVIAR">
+</form>
 
 </form>
 

@@ -1,0 +1,18 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>Nuestros Arquitectos<h1>
+
+    {%  for arquitecto in objetc_list %}
+    <li>{{arquitecto}}</li>
+    <button><a href="{% url 'arquitecto_editar' arquitecot.id %}">Editar </a>
+    </button>
+    <button><a href="{% url 'arquitecto_borrar' arquitecot.id %}">Borrar </a>
+    </button>
+    {% endfor %}
+
+<a class= "btn btn-success" href="{% url 'arquitecto_crear' %}">Ingrese un nuevo Arquitecto/a </a>
+
+{% endblock %}

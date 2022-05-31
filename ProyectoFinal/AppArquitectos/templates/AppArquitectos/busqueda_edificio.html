@@ -3,10 +3,11 @@
 
 {% block ContenidoCambiado %}
 
-<form action="{% url 'buscar_arquitecto' %}" method="get"></form>
+<form action="/AppArquitectos/buscar/" method="GET">
 
-<p><input type="number", name="Matricula" placeholder="Buscar matricula"></p>
+<p><input type="text", name="edificio" placeholder="Buscar edificio" id="edificio"></p>
 <p><input type="submit" value="ENVIAR"></p>
  
  </ul>
+</form>
 {% endblock %}

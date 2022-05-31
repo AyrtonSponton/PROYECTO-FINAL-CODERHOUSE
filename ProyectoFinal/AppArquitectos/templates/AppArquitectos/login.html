@@ -1,0 +1,17 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>INICIAR SESIÓN</h1>
+
+<form action="" method="post">
+
+{% csrf_token %}
+
+{{form.as_p}}
+
+<button type="submit"> Inciar Sesión </button>
+
+</form>
+{% endblock %}

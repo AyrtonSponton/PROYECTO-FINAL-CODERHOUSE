@@ -3,7 +3,7 @@ from django.db import models
 from django.forms import CharField
 
 # Create your models here.
-class arquitectos(models.Model):
+class Arquitecto(models.Model):
     nombre = models.CharField(max_length=50)
     matricula = models.IntegerField()
     telefono = models.IntegerField()
@@ -11,7 +11,7 @@ class arquitectos(models.Model):
     def __str__(self):
         return self.nombre+" "+"Matricula:"+str(self.matricula)+" "+"Telefono:"+str(self.telefono)
 
-class consulta(models.Model):
+class Consulta(models.Model):
     nombre = models.CharField(max_length= 50)
     consulta = models.CharField(max_length= 50)
     telefono = models.IntegerField()
@@ -21,7 +21,7 @@ class consulta(models.Model):
         return self.nombre+" "+"Consulta:"+self.consulta+" "+"Telefono:"+" "+str(self.telefono)+" "+"email:"+" "+self.email
 
 
-class edificios (models.Model):
+class Edificio (models.Model):
     nombre = models.CharField (max_length=50)
     ubicacion = models.CharField (max_length=50) 
     

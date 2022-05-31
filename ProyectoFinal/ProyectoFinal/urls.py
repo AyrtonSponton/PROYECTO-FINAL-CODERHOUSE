@@ -21,7 +21,7 @@ from .views import probandotemplate, saludo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', saludo),
+    path('', include('AppArquitectos.urls')),
     path('inicio/', probandotemplate),
     path('AppArquitectos/', include('AppArquitectos.urls'))
 ]

@@ -3,7 +3,12 @@
 
 {% block ContenidoCambiado %}
 
-<h1>Arquitecto Creado!</h1>
+<h1>Eliminar Arquitecto<h1>
+
+<form metod="POST"> {%csrf_token%} 
+    Estas seguro de eliminar al arquitecto "{{objetc}}"?
+    <input type="submit" value="SI">
+</form>
 <a class= "btn btn-success" href="{% url 'arquitecto' %}">Regresar a Nuestros Arquitectos </a>
 
 {% endblock %}
