@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ProyectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/CHIVI/Desktop/Python/Proyecto final/PROYECTO-FINAL-CODERHOUSE/ProyectoFinal/ProyectoFinal/template/inicio.html"],
+        'DIRS': ["C:/Users/CHIVI/Desktop/Python/Proyecto final/PROYECTO-FINAL-CODERHOUSE/ProyectoFinal/ProyectoFinal/template/index.html"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,6 +111,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_URL = '/AppArquitectos/login'
 
 
 # Static files (CSS, JavaScript, Images)

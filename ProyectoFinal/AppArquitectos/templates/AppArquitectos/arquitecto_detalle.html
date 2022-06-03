@@ -1,0 +1,12 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+<h1>Detalles</h1>
+    <p>Nombre: <i>{{arquitecto.nombre}}</i></p>
+    <p>Matricula: <i>{{arquitecto.matricula}}</i></p>
+    <p>Telefono: <i>{{arquitecto.telefono}}</i></p>
+    <p>
+        <a href="{% url 'arquitecto_listar' %}">Regresar</a>
+    </p>
+{% endblock %}

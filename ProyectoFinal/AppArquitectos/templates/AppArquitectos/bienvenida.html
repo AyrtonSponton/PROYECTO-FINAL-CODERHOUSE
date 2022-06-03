@@ -1,0 +1,11 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>{{mensaje1}}</h1>
+
+
+<a class= "btn btn-success" href="{% url 'crearconsulta' %}">Realizar una consulta </a>
+
+{% endblock %}

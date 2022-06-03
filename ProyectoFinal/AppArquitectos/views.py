@@ -8,51 +8,61 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout, authenticate
-# Create your views here.
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+# Create your views here.
 class ArquitectoList(ListView):
     model=Arquitecto
-    template_name= "AppArquitectos/arquitecto.html"
+    template_name = "AppArquitectos/arquitecto.html"
+
+class ArquitectoDetalle(DetailView):
+    model = Arquitecto
+    template_name = "AppArquitectos/arquitecto_detalle.html"
 
 class ArquitectoCreacion(CreateView):
-    model=Arquitecto
-    succese_url = reverse_lazy('arquitecto_listar')
-    fields= ['nombre', 'matricula', 'telefono']
+    model = Arquitecto
+    success_url = reverse_lazy('arquitecto_listar')
+    fields = ['nombre','matricula','telefono']
 
-class ArquitectoEditar(UpdateView):
-    model=Arquitecto
-    success_url= reverse_lazy('arquitecto_listar')
-    fields= ['nombre', 'matricula', 'telefono']
+class Arquitectoupdate(UpdateView):
+    model = Arquitecto
+    success_url = reverse_lazy('arquitecto_listar')
+    fields = ['nombre','matricula','telefono']
 
-class ArquitectoBorrar(DeleteView):
-    model=Arquitecto
-    succese_url = reverse_lazy('arquitecto_listar')
+class ArquitectoDelete(DeleteView):
+    model = Arquitecto
+    success_url = reverse_lazy('arquitecto_listar')
 
 
 def consultas(request):
     return render(request, "AppArquitectos/consulta.html")
 
+def ConsultaEnviada(request):
+    return render(request, "AppArquitectos/ConsultaEnviada.html")
 
 
-def crearconsulta(request):
-    if request.method == 'POST':
-        formulario = ConsultaFormulario(request.POST)
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            consultarealizada= Consulta(nombre= informacion['nombre'], consulta= informacion['consulta'], telefono= informacion['telefono'], email= informacion['email'])
-            consultarealizada.save()
-            return render(request, "AppArquitectos/ConsultaEnviada.html")
-    else:
-        formulario = ConsultaFormulario()      
-    return render(request,"AppArquitectos/crearconsulta.html",{'formulario':formulario})
+class ConsultaCreacion(LoginRequiredMixin,CreateView):
+    model = Consulta
+    success_url = reverse_lazy('ConsultaEnviada')
+    fields = ['nombre','consulta','telefono','email']
+
+#def crearconsulta(request):
+    #if request.method == 'POST':
+         #formulario = ConsultaFormulario(request.POST)
+         #if formulario.is_valid():
+             #informacion = formulario.cleaned_data
+             #consultarealizada= Consulta(nombre= informacion['nombre'], consulta= informacion['consulta'], telefono= informacion['telefono'], email= informacion['email'])
+             #consultarealizada.save()
+             #return render(request, "AppArquitectos/ConsultaEnviada.html")
+     #else:
+         #formulario = ConsultaFormulario()      
+    #return render(request,"AppArquitectos/crearconsulta.html",{'formulario':formulario})
 
 
 
 def edificio(request):
     return render(request, "AppArquitectos/edificio.html")
-
 
 
 def crearedificio(request):
@@ -85,39 +95,33 @@ def inicio(request):
 
 def login_request(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
+        form = AuthenticationForm(request=request, data = request.POST)
         if form.is_valid():
-            user= form.cleaned_data.get('usuario')
-            contra= form.cleaned_data.get('contraseña')
-
-            Usuario= authenticate(username = user, password = contra)
-
-            if Usuario is not None:
-                login(request, Usuario)
-                return render(request, "AppArquitectos/inicio.html",{"mensaje": f"Bienvenido {user}"})
+            usuario= form.cleaned_data.get('username')
+            clave= form.cleaned_data.get('password')
+            persona= authenticate(username=usuario, password=clave)
+            if persona is not None:
+                login(request, persona)
+                return render(request, "AppArquitectos/bienvenida.html",{'mensaje1': f'Bienvenido al sistema {usuario}'})
             else:
-                return render(request, "AppArquitectos/inicio.html", {"mensaje": "Error, Datos Incorrectos"} )
-        
+                return render(request, "AppArquitectos/login.html", {'form':form,'mensaje3':'Error, Datos Incorrectos, por favor vuelva a intentarlo'} )    
         else:
-            return render(request, "AppArquitectos/inicio.html", {"mensaje": "Error, Formulario Incorrecto"} )
-
-    form = AuthenticationForm()
-    return render(request,"AppArquitectos/login.html", {'form':form})
+            return render(request, "AppArquitectos/login.html", {'form':form,'mensaje4': 'Error, Formulario Incorrecto'} )
+    else:
+        form = AuthenticationForm()
+        return render(request,"AppArquitectos/login.html", {'form':form})
 
 
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-
             username= form.cleaned_data['username']
             form.save()
-            return render(request, "AppArquitectos/registro.html", {"mensaje": f"Usuario {username} Creado"})
+            return render(request, "AppArquitectos/bienvenida.html", {'mensaje1': f'Usuario {username} Creado'})
+        else:
+            return render(request, "AppArquitectos/registro.html", {'form':form,'mensaje2': "NO SE PUDO CREAR EL USUARIO"})
     
     else:
         form= UserRegisterForm()
         return render(request, "AppArquitectos/registro.html", {"form":form})
-
-@login_required
-def consulta(request):
-    return render(request, "AppArquitectos/consulta.html")

@@ -3,11 +3,8 @@
 
 {% block ContenidoCambiado %}
 
-<form method="post"> {% csrf_token %}
-    {{ fomr.as_p }}
-    <input type="submit" value="ENVIAR">
-</form>
-
-</form>
-
+ <form method="post">{% csrf_token %}
+     {{form.as_p}}
+     <input type="submit" value="Enviar">
+ </form>
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>Nuestros Arquitectos</h1>
+<ul>
+    {% for arquitecto in object_list %}
+        <li>
+            <p>Nombre: {{ arquitecto.nombre }} </p>
+            <p>Matricula: {{ arquitecto.matricula }} </p>
+            <p>
+                <a href="{% url 'arquitecto_detalle' arquitecto.id %}"> Ver</a>
+                <a href="{% url 'arquitecto_editar' arquitecto.id %}"> Editar</a>
+                <a href="{% url 'arquitecto_borrar' arquitecto.id %}"> Borrar</a>
+
+            </p>
+        </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}
