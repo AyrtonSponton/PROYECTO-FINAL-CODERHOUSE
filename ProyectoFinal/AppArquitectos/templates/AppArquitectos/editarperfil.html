@@ -1,0 +1,25 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>EDITAR PERFIL</h1>
+
+    <form action="{% url 'editarperfil' %}" method="POST">{% csrf_token %}
+    <table>
+
+        {{miFormulario.as_table}}
+
+    </table>
+    <input type="submit", value="Confirmar">
+    </form>
+
+    {{mensaje2}}
+    <a class= "btn btn-success" href="{% url 'agregaravatar' %}">CAMBIAR AVATAR </a>
+<br>
+<br>
+<br>
+
+<a class= "btn btn-success" href="{% url 'inicio' %}">INICIO </a>
+
+{% endblock %}

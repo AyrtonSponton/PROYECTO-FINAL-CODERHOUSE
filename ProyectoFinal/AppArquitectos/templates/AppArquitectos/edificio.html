@@ -3,11 +3,18 @@
 
 {% block ContenidoCambiado %}
 
-<h1>Nuestros edificios y proyectos</h1>
- <a class= "btn btn-success" href="{% url 'crearedificio' %}">Ingrese un nuevo Edificio o Proyecto </a>
-<br>
-<br>
- <form action="/AppArquitectos/buscar/" method="GET">
+<h1>Nuestros Edificios y Proyectos</h1>
+<ul>
+    {% for edificio in object_list %}
+        <li>
+            <h5>Nombre: {{ edificio.nombre }} </h5>
+            <h5>Ubicación: {{ edificio.ubicacion }}</h5>
+
+            </p>
+        </li>
+
+    {% endfor %}
+</ul>
 
     <p><input type="text", name="edificio" placeholder="Buscar edificio" id="edificio"></p>
     <p><input class="btn btn-success" type="submit" value="ENVIAR"></p>

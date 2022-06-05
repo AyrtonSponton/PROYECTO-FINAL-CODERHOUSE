@@ -89,6 +89,13 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.rectangulo {
+  width: 250px; 
+  height: 100px; 
+  border: 3px solid #555;
+  background: #428bca;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;

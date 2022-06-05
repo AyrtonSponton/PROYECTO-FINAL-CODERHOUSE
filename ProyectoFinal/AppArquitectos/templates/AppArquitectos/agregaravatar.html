@@ -1,0 +1,28 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>CARGAR AVATAR</h1>
+
+{{mensaje1}}
+
+<form action="{% url 'agregaravatar' %}" method="POST" enctype="multipart/form-data" >{% csrf_token %}
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+    <input type="submit", value="Confirmar">
+</form>
+
+
+{{mensaje}}
+{{mensaje2}}
+<br>
+<br>
+<br>
+
+<a class= "btn btn-success" href="{% url 'inicio' %}">INICIO </a>
+
+{% endblock %}

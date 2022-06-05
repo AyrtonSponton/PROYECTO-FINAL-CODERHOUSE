@@ -26,33 +26,7 @@
             <div class="masthead-content text-white">
                 <div class="container-fluid px-4 px-lg-0">
                     {% block ContenidoCambiado %}
-                    <h1 class="fst-italic lh-1 mb-5">Bienvenido a Salas-Peveri Arquitectos</h1>
-                    <h3 class="mb-5">Construyendo Sueños!</h3>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="email" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                            <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email is not valid.</div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                 
                                 {% endblock %}
                             </div>
                         </div>
@@ -75,7 +49,17 @@
                 <a class="btn btn-dark m-3" href="{% url 'arquitecto_listar' %}"> <i class="fa-solid fa-people-group"></i>
                 <a class="btn btn-dark m-3" href="{% url 'edificio' %}"><i class="fa-solid fa-building"></i></a>
                 <a class="btn btn-dark m-3" href="{% url 'consulta' %}"><i class="fa-solid fa-message"></i></a>
+                
+                {% if not request.user.is_authenticated  %}
                 <a class="btn btn-dark m-3" href="{% url 'login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                {%  endif %}
+            
+                {% if request.user.is_authenticated %}
+                <h6 class="mb-2">Hola, {{user.username}}</h6>
+                <img src="{{url}}" alt="">
+                <a class="btn btn-dark m-3" href="{% url 'editarperfil' %}"> EDITAR PERFIL</a>
+                <a class="btn btn-dark m-3" href="{% url 'logout' %}"> SALIR <i class="fa-solid fa-right-from-bracket"></i></a>
+                {%  endif %}
             </div>
         </div>
    

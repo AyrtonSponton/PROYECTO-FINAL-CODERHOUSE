@@ -1,6 +1,6 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
-from django.forms import CharField
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Arquitecto(models.Model):
@@ -27,3 +27,7 @@ class Edificio (models.Model):
     
     def __str__(self):
         return "Nombre del Edificio:"+" "+self.nombre+" "+"Ubicacion:"+" "+self.ubicacion
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='avatar', null=True, blank = True)
