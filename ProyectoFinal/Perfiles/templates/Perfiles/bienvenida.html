@@ -1,0 +1,16 @@
+{% extends  "Perfiles/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>{{mensaje}}</h1>
+
+<h1>{{mensaje1}}</h1>
+
+<h1>{{mensaje2}}</h1>
+
+
+<a class= "btn btn-success" href="{% url 'crearconsulta' %}">Realizar una consulta </a>
+
+
+{% endblock %}

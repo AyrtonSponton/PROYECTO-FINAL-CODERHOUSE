@@ -7,15 +7,15 @@
 <ul>
     {% for edificio in object_list %}
         <li>
-            <h5>Nombre: {{ edificio.nombre }} </h5>
-            <h5>Ubicación: {{ edificio.ubicacion }}</h5>
-
-            </p>
+            <h3>Nombre: {{ edificio.nombre }} </h3>
+            <h5><a href="{% url 'edificio_detalle' edificio.id %}"> Ver</a></h5>
+            
+        {% if user.is_superuser %}
+            <a href="{% url 'edificio_crear' %}"> Nuevo</a>
+            <a href="{% url 'edificio_editar' edificio.id %}"> Editar</a>
+            <a href="{% url 'edificio_borrar' edificio.id %}"> Borrar</a>
+        {% endif %}
         </li>
 
     {% endfor %}
-</ul>
-
-    <p><input type="text", name="edificio" placeholder="Buscar edificio" id="edificio"></p>
-    <p><input class="btn btn-success" type="submit" value="ENVIAR"></p>
 {% endblock %}

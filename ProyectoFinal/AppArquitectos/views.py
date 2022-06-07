@@ -7,11 +7,6 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 # Create your views here.
 class ArquitectoList(ListView):
@@ -24,7 +19,7 @@ class ArquitectoDetalle(DetailView):
 
 class ArquitectoCreacion(CreateView):
     model = Arquitecto
-    success_url = reverse_lazy('agregaravatar')
+    success_url = reverse_lazy('arquitecto_listar')
     fields = ['nombre','matricula','telefono']
 
 class Arquitectoupdate(UpdateView):
@@ -42,37 +37,25 @@ class EdificioList(ListView):
     template_name = "AppArquitectos/edificio.html"
 
 
-def crearedificio(request):
-    if request.method == 'POST':
-        formulario = EdificioFormulario(request.POST)
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            edificio= Edificio (nombre= informacion['nombre'], ubicacion= informacion['ubicacion'])
-            edificio.save()
-            return render(request, "AppArquitectos/Edificiocreado.html")
-    else:
-        formulario = EdificioFormulario()      
-    return render(request,"AppArquitectos/crearedificio.html",{'formulario':formulario})
+class EdificioCrear(CreateView):
+    model=Edificio
+    success_url = reverse_lazy('edificio')
+    fields = ['nombre','ubicacion','imagen_edificio','imagen_ubicacion']
 
-def busqueda_edificio(request):
-    return render(request, "AppArquitectos/busqueda_edificio.html")
+class EdificioDetalle(DetailView):
+    model = Edificio
+    template_name = "AppArquitectos/edificio_detalle.html"
 
-def buscar(request):
-    if request.GET['edificio']:
-        edificio= request.GET['edificio']
-        edificios= Edificio.objects.filter(nombre = edificio)
-        return render (request, "AppArquitectos/resultadobusqueda.html", {"Nombre": edificios})
-    
-    else:
-        respuesta = "Ingrese datos validos"
-        return HttpResponse(respuesta)
+class EdificioUpdate(UpdateView):
+    model=Edificio
+    success_url = reverse_lazy('edificio')
+    fields = ['nombre','ubicacion','imagen_edificio','imagen_ubicacion']
 
+class EdificioDelete(DeleteView):
+    model = Edificio
+    success_url = reverse_lazy('edificio')
 
 def inicio(request):
-    if request.user.is_authenticated:
-        avatar=Avatar.objects.filter(user=request.user)
-        return render(request, 'AppArquitectos/inicio.html', {'url': avatar[0].avatar.url})
-    else:
-        return render(request, 'AppArquitectos/inicio.html')
+    return render(request, 'AppArquitectos/inicio.html')
 
 

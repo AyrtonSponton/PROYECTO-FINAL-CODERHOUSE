@@ -1,0 +1,15 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>Borar Edificio/Proyecto</h1>
+
+<form method="post"> {% csrf_token %}
+    Estas seguro de borrar a "{{object}}"
+    <input type="submit" value="Enviar">
+
+
+</form>
+
+{% endblock %}

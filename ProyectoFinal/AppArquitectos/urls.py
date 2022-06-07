@@ -2,12 +2,14 @@ from inspect import formatannotationrelativeto
 from django.urls import path
 from .views import *
 from django.contrib.auth.views import LogoutView
+
 urlpatterns = [
+    path('inicio/', inicio, name = "inicio"),
     path('edificio/', EdificioList.as_view(), name = "edificio"),
-    path('', inicio, name = "inicio"),
-    path('crearedificio/', crearedificio, name='crearedificio'),
-    path('busqueda/edificio/',busqueda_edificio, name='busqueda_edificio'),
-    path('buscar/', buscar),
+    path('edificio/nuevo/', EdificioCrear.as_view(), name='edificio_crear'),
+    path('edificio/<pk>', EdificioDetalle.as_view(), name='edificio_detalle'),
+    path('edificio/editar/<pk>', EdificioUpdate.as_view(), name= 'edificio_editar'),  
+    path('edificio/borrar/<pk>', EdificioDelete.as_view(), name= 'edificio_borrar'),
     path('arquitecto/', ArquitectoList.as_view(), name= 'arquitecto_listar'),
     path("arquitecto/<pk>", ArquitectoDetalle.as_view(), name= 'arquitecto_detalle' ),
     path('arquitecto/nuevo/', ArquitectoCreacion.as_view(), name= 'arquitecto_crear'),

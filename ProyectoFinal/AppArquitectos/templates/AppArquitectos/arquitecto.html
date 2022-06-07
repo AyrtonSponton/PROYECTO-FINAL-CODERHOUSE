@@ -9,11 +9,12 @@
         <li>
             <p>Nombre: {{ arquitecto.nombre }} </p>
             <p>Matricula: {{ arquitecto.matricula }} </p>
-            <p>
-                <a href="{% url 'arquitecto_detalle' arquitecto.id %}"> Ver</a>
+            <a href="{% url 'arquitecto_detalle' arquitecto.id %}"> Ver</a>
+
+            {% if user.is_superuser %}
                 <a href="{% url 'arquitecto_editar' arquitecto.id %}"> Editar</a>
                 <a href="{% url 'arquitecto_borrar' arquitecto.id %}"> Borrar</a>
-
+            {% endif %}
             </p>
         </li>
 

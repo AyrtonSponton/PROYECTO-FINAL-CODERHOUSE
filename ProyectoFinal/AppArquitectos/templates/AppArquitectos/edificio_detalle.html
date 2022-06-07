@@ -1,0 +1,16 @@
+{% extends  "AppArquitectos/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+<h1>Detalles</h1>
+    <p>Nombre: <i>{{edificio.nombre}}</i></p>
+    <p>Ubicación: <i>{{edificio.ubicacion}}</i></p>
+    <img src="{{ edificio.imagen_edificio.url }}" height="300px">
+    <br>
+    <br>
+    Ubicación
+    <img src="{{ edificio.imagen_ubicacion.url }}" height="400px">
+    <p>
+        <a href="{% url 'edificio' %}">Regresar</a>
+    </p>
+{% endblock %}

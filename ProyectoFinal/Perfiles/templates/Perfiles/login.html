@@ -1,0 +1,25 @@
+{% extends  "Perfiles/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>INICIAR SESIÓN</h1>
+
+<form method="post">
+
+{% csrf_token %}
+
+{{form.as_p}}
+
+{{mensaje3}}
+
+{{mensaje4}}
+
+<button type="submit"> Inciar Sesión </button>
+
+</form>
+<br>
+<br>
+<h5>Si no tiene cuenta oprima el boton "REGISTRARSE"</h5>
+<a class= "btn btn-success" href="{% url 'registro' %}">REGISTRARSE </a>
+{% endblock %}

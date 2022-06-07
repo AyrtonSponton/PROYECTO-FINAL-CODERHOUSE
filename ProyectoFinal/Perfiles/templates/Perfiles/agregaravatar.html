@@ -1,0 +1,26 @@
+{% extends  "Perfiles/padre.html" %}
+{% load static %}
+
+{% block ContenidoCambiado %}
+
+<h1>CARGAR AVATAR</h1>
+
+{{mensaje1}}
+
+{{ agregarAvatar }}
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{ avatar_form.as_p}}
+    {{ form.as_p }}
+    <input type="submit", value="Confirmar">
+</form>
+
+
+{{mensaje}}
+{{mensaje2}}
+<br>
+<br>
+<br>
+
+<a class= "btn btn-success" href="{% url 'inicio' %}">INICIO </a>
+
+{% endblock %}
