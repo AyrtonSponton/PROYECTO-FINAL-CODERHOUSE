@@ -95,4 +95,7 @@ def agregarAvatar(request):
 def inicio(request):
     avatar=Avatar.objects.filter(user=request.user)
     if request.user.is_authenticated:
-        return render(request, 'Perfiles/inicio2.html', {'url': avatar[0].avatar.url})
+        if avatar:
+            return render(request, 'Perfiles/inicio2.html', {'url': avatar[0].avatar.url})
+        else:
+            return render(request, 'Perfiles/inicio2.html')
